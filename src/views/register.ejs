@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<%- include('includes/head') %>
+
+<body class="bg-dark d-flex flex-column vh-100">
+  <%- include('includes/nav') %>
+
+  <div class="container h-100">
+    <div class="card rounded-lg bg-white mx-auto w-50 mt-5">
+      <div class="card-header border-warning">
+        <h5 class="card-title">Faça login com email e senha</h5>
+      </div>
+      <div class="card-body">
+
+        <%- include('includes/message') %>
+
+        <form action="/cadastro-save" method="post" id="form-register">
+          <div class="mb-3">
+            <label class="form-label">Qual é o seu nome?</label>
+            <input name="name" id="name" type="text" class="form-control" placeholder="Fulano..." aria-describedby="emailHelp">
+            <div id="nameHelp" class="form-text"></div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Qual é o seu email?</label>
+            <input name="email" id="email" type="email" class="form-control" aria-describedby="emailHelp" placeholder="email@example.com">
+            <div id="emailHelp" class="form-text"></div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Crie sua senha</label>
+            <input name="password" placeholder="******" type="password" class="form-control" id="password">
+            <div id="passwordHelp" class="form-text"></div>
+          </div>
+          <div class="d-flex align-items-center flex-row">
+            <button type="submit" class="btn btn-primary me-3">Cadastrar</button>
+            <a class="link text-decoration-none text-primary" href="/registrar">Logar em uma conta existente</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <%- include('includes/footer') %>
+
+  <%- include('includes/scripts') %>
+  <script src="/assets/js/register.js"></script>
+</body>
+
+</html>

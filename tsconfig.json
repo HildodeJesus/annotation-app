@@ -1,0 +1,14 @@
+{
+	"compilerOptions": {
+		"target": "ES2017",
+		"module": "commonjs",
+		"rootDir": "./src",
+		"allowJs": true,
+		"outDir": "./dist",
+		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true,
+		"skipLibCheck": true
+	},
+
+	"exclude": ["./public", "./frontend", "./webpack.config.js"]
+}

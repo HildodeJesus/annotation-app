@@ -1,0 +1,32 @@
+<div class="modal  fade" id="addModal" tabindex="-1">
+  <div class="modal-dialog modal-xl modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Adicione uma nova nota</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="/notes/update/<%=note._id%>" method="post">
+          <input type="hidden" name="userId" value="<%= user.id %>">
+          <div class="mb-3">
+            <label class="form-label">Título</label>
+            <input type="text" name="title" class="form-control" value="<%=note.title%>">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Conteúdo</label>
+            <textarea id="addcontent" name="content" class="form-control" rows=" 10"><%=note.content%></textarea>
+          </div>
+          <div class="mb-3 form-check form-switch">
+            <% if(note.checked) { %>
+            <input name="checked" type="checkbox" class="form-check-input" checked>
+            <% } else { %>
+            <input name="checked" type="checkbox" class="form-check-input">
+            <% } %>
+            <label class="form-check-label">Destaque?</label>
+          </div>
+          <button type="submit" class="btn btn-primary">Salvar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<%- include('includes/head') %>
+
+<body class="bg-dark d-flex flex-column vh-100">
+  <%- include('includes/nav') %>
+
+  <div class="container h-100">
+    <div class="row justify-content-end">
+      <button type="button" class="btn btn-primary my-3" style="width: 10rem" data-bs-toggle="modal" data-bs-target="#addModal">
+        Adicionar
+      </button>
+    </div>
+
+    <%- include('includes/message') %>
+
+    <% if(highlight.data.length > 0) { %>
+    <div class="row flex-column justify-content-center mb-4">
+      <div class="d-flex">
+        <h2 class="fs-5 text-light fw-semibold mb-3">Destacados</h2>
+        <% if(hasHighlight) { %>
+        <span class="text-white ms-3">exibindo <%= (nextHglPage - 1) * 4 %> de <%= highlight.count %></span>
+        <a href="/?notePage=<%= nextNotePage - 1%>&hglPage=<%= nextHglPage%>" class="fs-6 ms-3 text-decoration-none">Ver mais</a>
+        <% } else if(highlight.count > 4) { %>
+        <span class="text-white ms-3">Exibindo todos</span>
+        <a href="/?notePage=<%= nextNotePage - 1%>" class="fs-6 ms-3 text-decoration-none">Ver menos</a>
+        <% } %>
+      </div>
+      <div class="d-flex flex-wrap">
+
+        <% highlight.data.forEach(note => { %>
+        <%- include('includes/card', {title: note.title, id: note._id}) %>
+        <%  }) %>
+
+      </div>
+    </div>
+    <% } %>
+
+    <% if(notes.data.length > 0) { %>
+    <div class="row flex-column justify-content-center">
+      <div class="d-flex">
+        <h2 class="fs-5 text-light fw-semibold mb-3">Minhas anotações</h2>
+        <% if(hasNotes) { %>
+        <span class="text-white ms-3">exibindo <%= (nextNotePage - 1) * 8 %> de <%= notes.count %></span>
+        <a href="/?notePage=<%= nextNotePage %>&hglPage=<%= nextHglPage - 1%>" class="fs-6 ms-3 text-decoration-none">Ver mais</a>
+        <% } else if(notes.count > 8) { %>
+        <span class="text-white ms-3">exibindo todos</span>
+        <a href="/?hglPage=<%= nextHglPage - 1%>" class="fs-6 ms-3 text-decoration-none">Ver menos</a>
+        <% } %>
+      </div>
+      <div class="d-flex flex-wrap">
+
+        <% notes.data.forEach(note => { %>
+        <%- include('includes/card', {title: note.title, id: note._id}) %>
+        <%  }) %>
+
+      </div>
+    </div>
+    <% } else { %>
+    <p class="text-center text-white fs-4">
+      Você ainda não possui anotações
+    </p>
+    <% } %>
+
+  </div>
+
+  <%- include('includes/addModal') %>
+
+  <%- include('includes/footer') %>
+
+  <%- include('includes/scripts') %>
+
+  <script src="https://cdn.tiny.cloud/1/jp83p788r1ishihiyyvbmt4cxz76g7auvzv91pbgdynrx9zy/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+
+  <script>
+    tinymce.init({
+      selector: "#addcontent",
+      plugins: "fullscreen lists advlist wordcount preview table",
+      menubar: "edit view insert format preview",
+      toolbar: 'undo redo | styles | bold italic | alignleft aligncenter alignright alignjustify | outdent indent | numlist bullist'
+    });
+  </script>
+</body>
+
+</html>
