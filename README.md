@@ -1,1 +1,1 @@
-##I made this app to improve my MongoDB skills with moongoose
+## I made this app to improve my MongoDB skills with moongoose
